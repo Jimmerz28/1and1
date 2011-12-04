@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>GamerFagsHD</title>
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		// Count the number of users returned by the fans structure
+		function countIt( idiots ) 
+		{
+			var count = 0;
+			
+			for ( user in idiots )
+			{ 
+				count++;
+			}
+			
+			return count;
+		}
+		
+		$(document).ready( function() 
+		{
+			// Chain these and only display them both after they're both complete.
+			// Get the channel's # of fans
+			/*
+			$.ajax(
+			{
+				type: "GET",
+				url: "http://api.justin.tv/api/channel/fans/hunterz32.json?jsonp=?",
+				dataType: "jsonp",
+				success: function( data )
+				{
+					
+					$("#hunter span.fans").text( countIt( data ) );
+				}
+			});
+			
+			$.ajax(
+			{
+				type: "GET",
+				url: "http://api.justin.tv/api/channel/fans/brotatoe.json?jsonp=?",
+				dataType: "jsonp",
+				success: function( tata )
+				{
+					
+					$("#brotatoe span.fans").text( countIt( tata ) );
+				}
+			});
+			*/
+			
+			$.ajax(
+			{
+				type: "GET",
+				url: "http://api.justin.tv/api/channel/show/hunterz32.json?jsonp=?",
+				dataType: "jsonp",
+				success: function( channelInfo ) 
+				{
+					$("section#hunterz32Section > p").html( channelInfo.title );
+					$("section#hunterz32Section > div").html( channelInfo.embed_code );
+				}
+			});
+		});
+	</script>
+	<style type="text/css">
+		/* http://www.colourlovers.com/palette/128467/Pink_Walrus */
+		h1, li
+		{
+			font-family: Arial;
+			font-weight: bold;
+		}
+		
+		li
+		{
+			color: #8F8F8F;
+			font-size: 1.8em;
+			display: inline;
+		}
+		
+		a
+		{
+			height: 100%;
+			padding: .2em 1em;
+		}
+		
+		a:link, a:visited, a:hover, a:active
+		{
+			color: inherit;
+			text-decoration: none;
+		}
+		
+		a:hover
+		{
+			color: white;
+			background-color: #FF1168;
+		}
+		
+		ul
+		{
+			list-style: none;
+		}
+		
+		.fans
+		{
+			position: relative;
+			font-size: .5em;
+			color: #0B486B;
+			font-weight: bold;
+			background-color: #26ADE4;
+			padding: .1em .4em;
+			border-radius: .4em;
+			bottom: .4em;
+		}
+		
+		div
+		{
+			background-color: purple;
+			width: 50%;
+			height: 30em;
+			min-width: 500px;
+		}
+		
+		object
+		{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+
+	<nav>
+		<ul>
+			<li id="hunter"><a href="#">hunterz32 <span class="fans"></span></a></li>
+			<li id="brotatoe"><a href="#">brotatoe <span class="fans"></span></a></li>
+			<li id="both"><a href="#">hunt+atoe</a></li>
+		</ul>
+	</nav>
+	
+	<section id="hunterz32Section">
+		<h1>Hunterz32</h1>
+		<p></p>
+		<div></div>
+	</section>
+	
+	<section id="brotatoeSection">
+		<h1>brotatoe</h1>
+		<div></div>
+	</section>
+</body>
+</html>
