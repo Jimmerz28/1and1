@@ -105,7 +105,7 @@
 				{
 					$("section#hunterz32Section > h1 > span.description").html( channelInfo.title );
 					$("section#hunterz32Section > div > div.stream").html( channelInfo.embed_code );
-					$("section#huntatoe > div.viewing > div:first-child > div").html( channelInfo.embed_code );
+					$("section#huntatoe > div.viewing > div:first-child").html( channelInfo.embed_code );
 				}
 			});
 			
@@ -118,7 +118,7 @@
 				{
 					$("section#brotatoeSection > h1 > span.description").html( channelInfo.title );
 					$("section#brotatoeSection > div > div.stream").html( channelInfo.embed_code );
-					$("section#huntatoe > div.viewing > div:last-child > div").html( channelInfo.embed_code );
+					$("section#huntatoe > div.viewing > div:last-child").html( channelInfo.embed_code );
 				}
 			});
 			
@@ -191,8 +191,9 @@
 			bottom: .4em;
 		}
 		
-		.description
+		.description, h2 > span.description
 		{
+			font-family: Arial;
 			text-transform: uppercase;
 			font-size: .7em;
 			color: #26ADE4;
@@ -201,9 +202,13 @@
 		div.viewing > div
 		{
 			width: 50%;
-			height: 30em;
 			min-width: 500px;
 			display: inline-block;
+		}
+		
+		h2 + div, div.viewing > div
+		{
+			height: 30em;
 		}
 		
 		div.viewing > div:last-child
@@ -242,7 +247,7 @@
 		<ul>
 			<li id="hunter"><a href="#hunterz32Section">hunterz32 <span class="fans"></span></a></li>
 			<li id="brotatoe"><a href="#brotatoeSection">brotatoe <span class="fans"></span></a></li>
-			<li id="both"><a href="#">hunt+atoe</a></li>
+			<li id="both"><a href="#huntatoe">hunt+atoe</a></li>
 			<li id="toTop"><a href="#top">&nbsp;</a></li>
 		</ul>
 		
@@ -250,7 +255,7 @@
 	
 	<section id="hunterz32Section">
 	
-		<h1>Hunterz32 <span class="description"></span></h1>
+		<h1>hunterz32 <span class="description"></span></h1>
 		
 		<div class="viewing">
 			<div class="stream"></div>
@@ -281,19 +286,13 @@
 	
 	<section id="huntatoe">
 	
-		<h1>hunt+atoe <span class="description"></span></h1>
+		<h1>hunt+atoe <span class="description">(hunterz32) + (brotatoe)</span></h1>
 		
 		<div class="viewing">
 		
-			<div>
-				<h2><span class="description">test1</span></h2>
-				<div></div>
-			</div>
+			<div></div>
 			
-			<div>
-				<h2><span class="description">test2</span></h2>
-				<div></div>
-			</div>
+			<div></div>
 			
 		</div>
 		
