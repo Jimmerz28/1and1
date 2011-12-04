@@ -49,6 +49,37 @@
 			});
 			*/
 			
+			/*
+				https://gist.github.com/1365120
+				
+				Scroll smoothly to internal page links
+			*/ 
+			$('a[href*=#]').click(function() 
+			{
+			    
+			    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+			        && location.hostname == this.hostname) 
+		        {
+		        
+		            var $target = $(this.hash);
+		            
+		            $target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
+		            
+		            if ($target.length) 
+		            {
+		            
+		                var targetOffset = $target.offset().top;
+		                
+		                $('html,body').animate({scrollTop: targetOffset}, 1000);
+		                    
+		                return false;
+		                
+		            }
+		            
+		        }
+			        
+			});
+			
 			$.ajax(
 			{
 				type: "GET",
@@ -77,6 +108,17 @@
 	</script>
 	<style type="text/css">
 		/* http://www.colourlovers.com/palette/128467/Pink_Walrus */
+		html
+		{
+			background-color: #E9E9E9;
+		}
+		
+		body
+		{
+			margin-right: 5em;
+			margin-left: 5em;
+		}
+		
 		h1, li
 		{
 			font-family: Arial;
@@ -115,7 +157,8 @@
 		
 		section, ul
 		{
-			margin-bottom: 5em;
+			padding-bottom: 2em;
+			padding-top: 2em;
 		}
 		
 		.fans
@@ -163,8 +206,8 @@
 	<nav>
 		
 		<ul>
-			<li id="hunter"><a href="#">hunterz32 <span class="fans"></span></a></li>
-			<li id="brotatoe"><a href="#">brotatoe <span class="fans"></span></a></li>
+			<li id="hunter"><a href="#hunterz32Section">hunterz32 <span class="fans"></span></a></li>
+			<li id="brotatoe"><a href="#brotatoeSection">brotatoe <span class="fans"></span></a></li>
 			<li id="both"><a href="#">hunt+atoe</a></li>
 		</ul>
 		
