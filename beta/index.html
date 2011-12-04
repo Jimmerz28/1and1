@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>GamerFagsHD</title>
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		// Count the number of users returned by the fans structure
+		function countIt( idiots ) 
+		{
+			var count = 0;
+			
+			for ( user in idiots )
+			{ 
+				count++;
+			}
+			
+			return count;
+		}
+		
+		$(document).ready( function() 
+		{
+			$("#toTop").hide();
+		
+			// Display when the scrollbar passes 300 (pixels?)
+			$(window).scroll( function () 
+			{
+				if ( $(window).scrollTop() > 300 )
+				{
+					$("#toTop").fadeIn("slow");
+				}
+				
+				// If we're not past 300 hide the anchor
+				else 
+				{
+					$("#toTop").fadeOut("fast");
+				}
+			});
+		
+			// Chain these and only display them both after they're both complete.
+			// Get the channel's # of fans
+			
+			$.ajax(
+			{
+				type: "GET",
+				url: "http://api.justin.tv/api/channel/fans/hunterz32.json?jsonp=?",
+				dataType: "jsonp",
+				success: function( data )
+				{
+					
+					$("#hunter span.fans").text( countIt( data ) );
+				}
+			});
+			
+			$.ajax(
+			{
+				type: "GET",
+				url: "http://api.justin.tv/api/channel/fans/brotatoe.json?jsonp=?",
+				dataType: "jsonp",
+				success: function( tata )
+				{
+					
+					$("#brotatoe span.fans").text( countIt( tata ) );
+				}
+			});
+			
+			/*
+				https://gist.github.com/1365120
+				
+				Scroll smoothly to internal page links
+			*/ 
+			$('a[href*=#]').click(function() 
+			{
+			    
+			    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+			        && location.hostname == this.hostname) 
+		        {
+		        
+		            var $target = $(this.hash);
+		            
+		            $target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
+		            
+		            if ($target.length) 
+		            {
+		            
+		                var targetOffset = $target.offset().top;
+		                
+		                $('html,body').animate({scrollTop: targetOffset}, 1000);
+		                    
+		                return false;
+		                
+		            }
+		            
+		        }
+			        
+			});
+			
+			$.ajax(
+			{
+				type: "GET",
+				url: "http://api.justin.tv/api/channel/show/hunterz32.json?jsonp=?",
+				dataType: "jsonp",
+				success: function( channelInfo ) 
+				{
+					$("section#hunterz32Section > h1 > span.description").html( channelInfo.title );
+					$("section#hunterz32Section > div > div.stream").html( channelInfo.embed_code );
+					$("section#huntatoe > div.viewing > div:first-child > div").html( channelInfo.embed_code );
+				}
+			});
+			
+			$.ajax(
+			{
+				type: "GET",
+				url: "http://api.justin.tv/api/channel/show/brotatoe.json?jsonp=?",
+				dataType: "jsonp",
+				success: function( channelInfo ) 
+				{
+					$("section#brotatoeSection > h1 > span.description").html( channelInfo.title );
+					$("section#brotatoeSection > div > div.stream").html( channelInfo.embed_code );
+					$("section#huntatoe > div.viewing > div:last-child > div").html( channelInfo.embed_code );
+				}
+			});
+			
+		});
+	</script>
+	<style type="text/css">
+		/* http://www.colourlovers.com/palette/128467/Pink_Walrus */
+		html
+		{
+			background-color: #E9E9E9;
+		}
+		
+		body
+		{
+			margin-right: 5em;
+			margin-left: 5em;
+		}
+		
+		h1, li
+		{
+			font-family: Arial;
+			font-weight: bold;
+		}
+		
+		li
+		{
+			color: #8F8F8F;
+			font-size: 1.8em;
+			display: inline;
+		}
+		
+		nav a
+		{
+			height: 100%;
+			padding: .2em 2em;
+		}
+		
+		a:link, a:visited, a:hover, a:active
+		{
+			color: inherit;
+			text-decoration: none;
+		}
+		
+		a:hover
+		{
+			color: white;
+			background-color: #FF1168;
+		}
+		
+		ul
+		{
+			list-style: none;
+		}
+		
+		section, ul
+		{
+			padding-bottom: 2em;
+			padding-top: 2em;
+		}
+		
+		.fans
+		{
+			position: relative;
+			font-size: .5em;
+			color: #0B486B;
+			font-weight: bold;
+			background-color: #26ADE4;
+			padding: .1em .4em;
+			border-radius: .4em;
+			bottom: .4em;
+		}
+		
+		.description
+		{
+			text-transform: uppercase;
+			font-size: .7em;
+			color: #26ADE4;
+		}
+		
+		div.viewing > div
+		{
+			width: 50%;
+			height: 30em;
+			min-width: 500px;
+			display: inline-block;
+		}
+		
+		div.viewing > div:last-child
+		{
+			float: right;
+		}
+		
+		object, iframe
+		{
+			width: 100%;
+			height: 100%;
+			border: none;
+		}
+		
+		#toTop a:link
+		{
+			position: fixed;
+			left: 0;
+			top: 40%;
+			background-color: #FF1168;
+			width: 2em;
+			height: 3em;
+			padding: 0;
+			background-image: url("toTop.png");
+			background-size: 75%;
+			background-position: center center;
+			background-repeat: no-repeat;
+		}	
+		
+	</style>
+</head>
+<body id="top">
+
+	<nav>
+		
+		<ul>
+			<li id="hunter"><a href="#hunterz32Section">hunterz32 <span class="fans"></span></a></li>
+			<li id="brotatoe"><a href="#brotatoeSection">brotatoe <span class="fans"></span></a></li>
+			<li id="both"><a href="#">hunt+atoe</a></li>
+			<li id="toTop"><a href="#top">&nbsp;</a></li>
+		</ul>
+		
+	</nav>
+	
+	<section id="hunterz32Section">
+	
+		<h1>Hunterz32 <span class="description"></span></h1>
+		
+		<div class="viewing">
+			<div class="stream"></div>
+			<div class="chat">
+				<iframe src="http://www.justin.tv/chat/embed?channel=hunterz32&hide_chat=&default_chat=jtv&tweet_suffix=&over_18=false">
+				</iframe>
+			</div>
+		</div>
+		
+	</section>
+	
+	<section id="brotatoeSection">
+		
+		<h1>brotatoe <span class="description"></span></h1>
+		
+		<div class="viewing">
+			
+			<div class="stream"></div>
+			
+			<div class="chat">
+				<iframe src="http://www.justin.tv/chat/embed?channel=brotatoe&hide_chat=&default_chat=jtv&tweet_suffix=&over_18=false">
+				</iframe>
+			</div>
+			
+		</div>
+		
+	</section>
+	
+	<section id="huntatoe">
+	
+		<h1>hunt+atoe <span class="description"></span></h1>
+		
+		<div class="viewing">
+		
+			<div>
+				<h2><span class="description">test1</span></h2>
+				<div></div>
+			</div>
+			
+			<div>
+				<h2><span class="description">test2</span></h2>
+				<div></div>
+			</div>
+			
+		</div>
+		
+	</section>
+</body>
+</html>
