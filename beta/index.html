@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<title>GamerFagsHD</title>
+	<title>GamerSourceHD</title>
 	
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -105,7 +105,7 @@
 				{
 					$("section#hunterz32Section > h1 > span.description").html( channelInfo.title );
 					$("section#hunterz32Section > div > div.stream").html( channelInfo.embed_code );
-					$("section#huntatoe > div.viewing > div:first-child").html( channelInfo.embed_code );
+					$("section#huntatoe > div.viewing > div:first-child > div.stream").html( channelInfo.embed_code );
 				}
 			});
 			
@@ -118,7 +118,7 @@
 				{
 					$("section#brotatoeSection > h1 > span.description").html( channelInfo.title );
 					$("section#brotatoeSection > div > div.stream").html( channelInfo.embed_code );
-					$("section#huntatoe > div.viewing > div:last-child").html( channelInfo.embed_code );
+					$("section#huntatoe > div.viewing > div:last-child > div.stream").html( channelInfo.embed_code );
 				}
 			});
 			
@@ -141,6 +141,11 @@
 		{
 			font-family: Arial;
 			font-weight: bold;
+		}
+		
+		h1
+		{
+			font-size: 2.5em;
 		}
 		
 		li
@@ -173,10 +178,10 @@
 			list-style: none;
 		}
 		
-		section, ul
+		section:not( :nth-of-type(1) )
 		{
-			padding-bottom: 2em;
-			padding-top: 2em;
+			padding-bottom: 5em;
+			padding-top: 5em;
 		}
 		
 		.fans
@@ -201,12 +206,11 @@
 		
 		div.viewing > div
 		{
-			width: 50%;
-			min-width: 500px;
+			min-width: 49%;
 			display: inline-block;
 		}
 		
-		h2 + div, div.viewing > div
+		div.stream
 		{
 			height: 30em;
 		}
@@ -221,6 +225,11 @@
 			width: 100%;
 			height: 100%;
 			border: none;
+		}
+		
+		iframe
+		{
+			min-height: 430px;
 		}
 		
 		#toTop a:link
@@ -253,6 +262,32 @@
 		
 	</nav>
 	
+	<section id="huntatoe">
+	
+		<h1>hunt+atoe <span class="description">(hunterz32) + (brotatoe)</span></h1>
+		
+		<div class="viewing">
+		
+			<div>
+				<div class="stream"></div>
+				<div class="chat">
+					<iframe src="http://www.justin.tv/chat/embed?channel=hunterz32&hide_chat=&default_chat=jtv&tweet_suffix=&over_18=false">
+					</iframe>
+				</div>
+			</div>
+			
+			<div>
+				<div class="stream"></div>
+				<div class="chat">
+					<iframe src="http://www.justin.tv/chat/embed?channel=brotatoe&hide_chat=&default_chat=jtv&tweet_suffix=&over_18=false">
+					</iframe>
+				</div>
+			</div>
+			
+		</div>
+		
+	</section>
+	
 	<section id="hunterz32Section">
 	
 		<h1>hunterz32 <span class="description"></span></h1>
@@ -283,19 +318,6 @@
 		</div>
 		
 	</section>
-	
-	<section id="huntatoe">
-	
-		<h1>hunt+atoe <span class="description">(hunterz32) + (brotatoe)</span></h1>
-		
-		<div class="viewing">
-		
-			<div></div>
-			
-			<div></div>
-			
-		</div>
-		
-	</section>
+
 </body>
 </html>
