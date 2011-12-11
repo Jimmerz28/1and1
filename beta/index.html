@@ -41,29 +41,29 @@
 			// Chain these and only display them both after they're both complete.
 			// Get the channel's # of fans
 			
-			$.ajax(
-			{
-				type: "GET",
-				url: "http://api.justin.tv/api/channel/fans/hunterz32.json?jsonp=?",
-				dataType: "jsonp",
-				success: function( data )
-				{
-					
-					$("#hunter span.fans").text( countIt( data ) );
-				}
-			});
-			
-			$.ajax(
-			{
-				type: "GET",
-				url: "http://api.justin.tv/api/channel/fans/brotatoe.json?jsonp=?",
-				dataType: "jsonp",
-				success: function( tata )
-				{
-					
-					$("#brotatoe span.fans").text( countIt( tata ) );
-				}
-			});
+//			$.ajax(
+//			{
+//				type: "GET",
+//				url: "http://api.justin.tv/api/channel/fans/hunterz32.json?jsonp=?",
+//				dataType: "jsonp",
+//				success: function( data )
+//				{
+//					
+//					$("#hunter span.fans").text( countIt( data ) );
+//				}
+//			});
+//			
+//			$.ajax(
+//			{
+//				type: "GET",
+//				url: "http://api.justin.tv/api/channel/fans/brotatoe.json?jsonp=?",
+//				dataType: "jsonp",
+//				success: function( tata )
+//				{
+//					
+//					$("#brotatoe span.fans").text( countIt( tata ) );
+//				}
+//			});
 			
 			/*
 				https://gist.github.com/1365120
@@ -106,6 +106,7 @@
 					$("section#hunterz32Section > h1 > span.description").html( channelInfo.title );
 					$("section#hunterz32Section > div > div.stream").html( channelInfo.embed_code );
 					$("section#huntatoe > div.viewing > div:first-child > div.stream").html( channelInfo.embed_code );
+					$("#hunter span.fans").text( channelInfo.views_count );
 				}
 			});
 			
@@ -119,6 +120,7 @@
 					$("section#brotatoeSection > h1 > span.description").html( channelInfo.title );
 					$("section#brotatoeSection > div > div.stream").html( channelInfo.embed_code );
 					$("section#huntatoe > div.viewing > div:last-child > div.stream").html( channelInfo.embed_code );
+					$("#brotatoe span.fans").text( channelInfo.views_count );
 				}
 			});
 			
@@ -246,6 +248,36 @@
 			background-position: center center;
 			background-repeat: no-repeat;
 		}	
+		
+		@media screen and ( max-width: 1000px )
+		{
+			div.viewing > div
+			{
+				display: block;
+			}
+			
+			div.viewing > div:last-child
+			{
+				float: none;
+			}
+			
+			nav a
+			{
+				padding: .2em .5em;
+			}
+			
+			object, iframe
+			{
+				width: 100%;
+				height: 100%;
+				border: none;
+			}
+			
+			iframe
+			{
+				min-height: 430px;
+			}
+		}
 		
 	</style>
 </head>
