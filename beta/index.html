@@ -67,25 +67,9 @@
 			{
 				$("section#hunterz32Section > h1 > span.description").html( channelInfo.title );
 				$("section#hunterz32Section > div > div.stream").html( channelInfo.embed_code );
-				$("section#huntatoe > div.viewing > div:first-child > div.stream").html( channelInfo.embed_code );
 				$("#hunter span.fans").text( channelInfo.views_count );
 			}
-		});
-		
-		$.ajax(
-		{
-			type: "GET",
-			url: "http://api.justin.tv/api/channel/show/brotatoe.json?jsonp=?",
-			dataType: "jsonp",
-			success: function( channelInfo ) 
-			{
-				$("section#brotatoeSection > h1 > span.description").html( channelInfo.title );
-				$("section#brotatoeSection > div > div.stream").html( channelInfo.embed_code );
-				$("section#huntatoe > div.viewing > div:last-child > div.stream").html( channelInfo.embed_code );
-				$("#brotatoe span.fans").text( channelInfo.views_count );
-			}
-		});
-		
+		});		
 	});
 	</script>
 	<style type="text/css">
@@ -212,36 +196,6 @@
 			background-repeat: no-repeat;
 		}	
 		
-		@media screen and ( max-width: 1000px )
-		{
-			div.viewing > div
-			{
-				display: block;
-			}
-			
-			div.viewing > div:last-child
-			{
-				float: none;
-			}
-			
-			nav > ul:first-child a
-			{
-				padding: .2em .5em;
-			}
-			
-			object, iframe
-			{
-				width: 100%;
-				height: 100%;
-				border: none;
-			}
-			
-			iframe
-			{
-				min-height: 430px;
-			}
-		}
-		
 		#donations
 		{
 			cursor: pointer;
@@ -276,6 +230,55 @@
 		{
 			display: inline-block;
 		}
+		
+		@media screen and ( max-width: 1000px )
+		{
+			div.viewing > div
+			{
+				display: block;
+			}
+			
+			div.viewing > div:last-child
+			{
+				float: none;
+			}
+			
+			nav > ul:first-child a
+			{
+				padding: .2em .5em;
+			}
+			
+			object, iframe
+			{
+				width: 100%;
+				height: 100%;
+				border: none;
+			}
+			
+			iframe
+			{
+				min-height: 430px;
+			}
+			
+			#donations > li > ul > li
+			{
+				display: block;
+			}
+			
+			#donations > li > ul
+			{
+				display: none;
+				position: absolute;
+				z-index: 4;
+				width: 5em;
+				background-color: white;
+			}
+			
+			#donations a
+			{
+				padding: 0;
+			}
+		}
 	</style>
 </head>
 <body id="top">
@@ -284,8 +287,6 @@
 		
 		<ul>
 			<li id="hunter"><a href="#hunterz32Section">hunterz32 <span class="fans"></span></a></li>
-			<li id="brotatoe"><a href="#brotatoeSection">brotatoe <span class="fans"></span></a></li>
-			<li id="both"><a href="#huntatoe">hunt+atoe</a></li>
 			<li id="toTop"><a href="#top">&nbsp;</a></li>
 		</ul>
 		<ul id="donations">
@@ -353,33 +354,7 @@
 			</li>
 		</ul>
 	</nav>
-	
-	<section id="huntatoe">
-	
-		<h1>hunt+atoe <span class="description">(hunterz32) + (brotatoe)</span></h1>
 		
-		<div class="viewing">
-		
-			<div>
-				<div class="stream"></div>
-				<div class="chat">
-					<iframe src="http://www.justin.tv/chat/embed?channel=hunterz32&amp;amp;hide_chat=&amp;amp;default_chat=jtv&amp;amp;tweet_suffix=&amp;amp;over_18=false">
-					</iframe>
-				</div>
-			</div>
-			
-			<div>
-				<div class="stream"></div>
-				<div class="chat">
-					<iframe src="http://www.justin.tv/chat/embed?channel=brotatoe&amp;amp;hide_chat=&amp;amp;default_chat=jtv&amp;amp;tweet_suffix=&amp;amp;over_18=false">
-					</iframe>
-				</div>
-			</div>
-			
-		</div>
-		
-	</section>
-	
 	<section id="hunterz32Section">
 	
 		<h1>hunterz32 <span class="description"></span></h1>
@@ -394,22 +369,5 @@
 		
 	</section>
 	
-	<section id="brotatoeSection">
-		
-		<h1>brotatoe <span class="description"></span></h1>
-		
-		<div class="viewing">
-			
-			<div class="stream"></div>
-			
-			<div class="chat">
-				<iframe src="http://www.justin.tv/chat/embed?channel=brotatoe&amp;amp;hide_chat=&amp;amp;default_chat=jtv&amp;amp;tweet_suffix=&amp;amp;over_18=false">
-				</iframe>
-			</div>
-			
-		</div>
-		
-	</section>
-
 </body>
 </html>
